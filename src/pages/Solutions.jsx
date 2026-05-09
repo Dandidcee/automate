@@ -112,7 +112,7 @@ export default function Solutions() {
         <ScrollReveal>
           <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12 text-center">Solusi Per Industri</h2>
         </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 
           <ScrollReveal direction="left" delay={0} className="md:col-span-2">
             <div className="glass-panel rounded-xl p-8 group relative overflow-hidden card-hover h-full">
@@ -130,7 +130,7 @@ export default function Solutions() {
                   <h4 className="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-wider">Solusi OtomateID</h4>
                   <p className="text-on-surface-variant text-sm">Bot reservasi 24/7 terintegrasi dengan PMS, eskalasi tiket otomatis, dan broadcast promo tersegmentasi.</p>
                 </div>
-                <div className="bg-surface-container-lowest/50 rounded-lg p-6 border border-white/5">
+                <div className="bg-surface-container-high/30 backdrop-blur-sm rounded-lg p-6 border border-white/5">
                   <h4 className="font-label-sm text-label-sm text-on-surface mb-4">Hasil Nyata</h4>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -207,7 +207,7 @@ export default function Solutions() {
                   <h4 className="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-wider">Solusi OtomateID</h4>
                   <p className="text-on-surface-variant text-sm">Integrasi API multi-platform, workflow approval otomatis via WhatsApp, dan virtual assistant internal HR.</p>
                 </div>
-                <div className="bg-surface-container-lowest/50 rounded-lg p-6 border border-white/5 flex flex-col justify-center space-y-6">
+                <div className="bg-surface-container-high/30 backdrop-blur-sm rounded-lg p-6 border border-white/5 flex flex-col justify-center space-y-6">
                   {[{ label: 'Waktu Proses Approval', val: 80, color: 'bg-primary', text: 'text-primary', result: 'Turun 80%' }, { label: 'Produktivitas Tim Admin', val: 65, color: 'bg-secondary', text: 'text-secondary', result: 'Naik 65%' }].map(({ label, val, color, text, result }) => (
                     <div key={label}>
                       <div className="flex justify-between text-sm mb-2"><span className="text-on-surface-variant">{label}</span><span className={`${text} font-bold`}>{result}</span></div>
@@ -223,7 +223,7 @@ export default function Solutions() {
       </section>
 
       {/* ── Automation Impact Calculator ── */}
-      <section className="py-24 relative overflow-hidden" style={{ background: 'rgba(1,15,31,0.85)' }}>
+      <section className="py-24 relative overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/8 rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
@@ -265,7 +265,7 @@ export default function Solutions() {
             {/* RIGHT — Calculator & Dashboard */}
             <ScrollReveal direction="right" delay={200} className="lg:col-span-7">
               <div className="rounded-3xl p-1 relative overflow-hidden" style={{ background: 'linear-gradient(145deg, rgba(76,215,246,0.2), rgba(78,222,163,0.1), transparent)' }}>
-                <div className="bg-[#051424] rounded-[22px] p-6 md:p-8 relative overflow-hidden shadow-2xl">
+                <div className="bg-surface/40 backdrop-blur-xl rounded-[22px] p-6 md:p-8 relative overflow-hidden shadow-2xl">
                   {/* Inner glow */}
                   <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
                   
@@ -295,15 +295,27 @@ export default function Solutions() {
                       <div>
                         <label className="block text-sm font-semibold text-on-surface mb-3">Paket Automation OtomaID</label>
                         <div className="space-y-2">
-                          {Object.entries(PACKAGE_CONFIG).map(([k, v]) => (
+                          {Object.entries(PACKAGE_CONFIG).map(([k, v]) => {
+                            const isSelected = pkg === k;
+                            return (
                             <button key={k} onClick={() => setPkg(k)}
-                              className="w-full p-3 rounded-xl border text-sm font-semibold transition-all duration-200 text-left flex justify-between items-center"
-                              style={{ borderColor: pkg === k ? v.color : 'rgba(255,255,255,0.1)', background: pkg === k ? `${v.color}15` : 'transparent', color: pkg === k ? v.color : 'rgba(212,228,250,0.5)', boxShadow: pkg === k ? `0 0 12px ${v.color}30` : 'none' }}
+                              className={`w-full p-3 rounded-xl border text-sm font-semibold transition-all duration-300 text-left flex justify-between items-center ${isSelected ? 'scale-[1.02]' : 'hover:bg-white/5'}`}
+                              style={{ 
+                                borderColor: isSelected ? v.color : 'rgba(255,255,255,0.1)', 
+                                background: isSelected ? `${v.color}15` : 'transparent', 
+                                color: isSelected ? v.color : 'rgba(212,228,250,0.5)', 
+                                boxShadow: isSelected ? `0 0 15px ${v.color}40` : 'none' 
+                              }}
                             >
-                              <span>{v.label}</span>
+                              <div className="flex items-center gap-3">
+                                <div className={`w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center transition-all duration-300 ${isSelected ? 'border-transparent' : 'border-white/20'}`} style={{ backgroundColor: isSelected ? v.color : 'transparent' }}>
+                                  <span className={`material-symbols-outlined text-[14px] text-[#051424] transition-all duration-300 ${isSelected ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>check</span>
+                                </div>
+                                <span>{v.label}</span>
+                              </div>
                               <span className="text-xs opacity-80">{v.price === 0 ? 'Custom' : `Rp${new Intl.NumberFormat('id-ID').format(v.price)}/bln`}</span>
                             </button>
-                          ))}
+                          )})}
                         </div>
                       </div>
                     </div>
@@ -324,7 +336,7 @@ export default function Solutions() {
                         <div className="absolute inset-0 bg-primary/5 rounded-xl z-0" />
                         <div className="relative z-10">
                           <p className="text-xs text-on-surface-variant mb-1">Potensi Penghematan Bulanan</p>
-                          <p className="text-2xl font-bold text-primary text-glow-primary">
+                          <p className="text-xl font-bold text-primary text-glow-primary">
                             Rp {results.fmtRp(results.finalSavings)}
                           </p>
                         </div>

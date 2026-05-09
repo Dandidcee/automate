@@ -66,40 +66,40 @@
   --font-body-lg: "Inter", sans-serif;
   --font-headline-lg: "Space Grotesk", sans-serif;
 
-  --text-display-xl-mobile: 40px;
-  --text-display-xl-mobile--line-height: 48px;
+  --text-display-xl-mobile: 34px;
+  --text-display-xl-mobile--line-height: 40px;
   --text-display-xl-mobile--letter-spacing: -0.02em;
   --text-display-xl-mobile--font-weight: 700;
 
-  --text-display-xl: 72px;
-  --text-display-xl--line-height: 80px;
+  --text-display-xl: 56px;
+  --text-display-xl--line-height: 64px;
   --text-display-xl--letter-spacing: -0.02em;
   --text-display-xl--font-weight: 700;
 
-  --text-label-sm: 14px;
-  --text-label-sm--line-height: 20px;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 18px;
   --text-label-sm--letter-spacing: 0.05em;
   --text-label-sm--font-weight: 600;
 
-  --text-headline-md: 30px;
-  --text-headline-md--line-height: 38px;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
   --text-headline-md--font-weight: 500;
 
-  --text-body-md: 16px;
-  --text-body-md--line-height: 24px;
+  --text-body-md: 15px;
+  --text-body-md--line-height: 22px;
   --text-body-md--font-weight: 400;
 
-  --text-headline-lg-mobile: 32px;
-  --text-headline-lg-mobile--line-height: 40px;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
   --text-headline-lg-mobile--letter-spacing: -0.01em;
   --text-headline-lg-mobile--font-weight: 600;
 
-  --text-body-lg: 18px;
-  --text-body-lg--line-height: 28px;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 26px;
   --text-body-lg--font-weight: 400;
 
-  --text-headline-lg: 48px;
-  --text-headline-lg--line-height: 56px;
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 48px;
   --text-headline-lg--letter-spacing: -0.01em;
   --text-headline-lg--font-weight: 600;
 }
@@ -136,6 +136,292 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0px 0px 30px rgba(6, 182, 212, 0.15);
+}
+
+/* Glowing Card with Mouse Spotlight */
+.card-rot-bg {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: rgba(5, 20, 36, 0.85);
+  border: 1px solid rgba(78, 222, 163, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-rot-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+.card-rot-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, -200px),
+    rgba(78, 222, 163, 0.07) 0%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.card-rot-bg:hover {
+  border-color: rgba(78, 222, 163, 0.5);
+  box-shadow: 0 0 24px rgba(78, 222, 163, 0.15), 0 0 0 1px rgba(78, 222, 163, 0.1) inset;
+}
+
+.card-rot-bg:hover::after {
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(78, 222, 163, 0.12) 0%,
+    transparent 60%
+  );
+}
+
+/* Primary Button */
+.btn-fill {
+  cursor: pointer;
+  position: relative;
+  padding: 0.7em 2em;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 9999px;
+  background-color: transparent;
+  transition: color 0.45s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transform: scale(0);
+  z-index: -1;
+  background-color: var(--color-primary);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-fill:hover::before {
+  transform: scale(4);
+}
+
+.btn-fill:hover {
+  color: #051424;
+  box-shadow: 0 0 22px rgba(78, 222, 163, 0.4);
+}
+
+.btn-fill:active {
+  opacity: 0.85;
+}
+
+/* Secondary Button */
+.btn-fill-secondary {
+  cursor: pointer;
+  position: relative;
+  padding: 0.7em 2em;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 9999px;
+  background-color: transparent;
+  transition: color 0.45s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn-fill-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transform: scale(0);
+  z-index: -1;
+  background-color: var(--color-secondary);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-fill-secondary:hover::before {
+  transform: scale(4);
+}
+
+.btn-fill-secondary:hover {
+  color: #051424;
+  box-shadow: 0 0 22px rgba(76, 215, 246, 0.4);
+}
+
+.btn-fill-secondary:active {
+  opacity: 0.85;
+}
+
+/* Arrow Button (Pricing) */
+.btn-arrow {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  width: 100%;
+  gap: 0;
+  text-decoration: none;
+}
+
+.btn-arrow svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn-arrow:hover svg {
+  transform: translateX(5px);
+}
+
+.btn-arrow:active {
+  transform: scale(0.95);
+}
+
+/* Starter variant — secondary (cyan) */
+.btn-arrow-secondary {
+  background: rgba(76, 215, 246, 0.12);
+  color: var(--color-secondary);
+  border-color: rgba(76, 215, 246, 0.4);
+}
+.btn-arrow-secondary:hover {
+  background: var(--color-secondary);
+  color: #051424;
+}
+.btn-arrow-secondary svg circle { stroke: currentColor; }
+.btn-arrow-secondary svg path  { fill: currentColor; }
+
+/* Business variant — primary (emerald) */
+.btn-arrow-primary {
+  background: var(--color-primary);
+  color: #051424;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(78, 222, 163, 0.3);
+}
+.btn-arrow-primary:hover {
+  background: #5ef5b5;
+  box-shadow: 0 0 30px rgba(78, 222, 163, 0.5);
+}
+.btn-arrow-primary svg circle { stroke: #051424; }
+.btn-arrow-primary svg path  { fill: #051424; }
+
+/* Enterprise variant — tertiary/purple */
+.btn-arrow-tertiary {
+  background: rgba(167, 139, 250, 0.12);
+  color: #a78bfa;
+  border-color: rgba(167, 139, 250, 0.4);
+}
+.btn-arrow-tertiary:hover {
+  background: #a78bfa;
+  color: #051424;
+}
+.btn-arrow-tertiary svg circle { stroke: currentColor; }
+.btn-arrow-tertiary svg path  { fill: currentColor; }
+
+/* WhatsApp Bubble-Fill Button */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  color: var(--color-primary);
+  padding: 0.8em 2em;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 9999px;
+  background: rgba(78, 222, 163, 0.08);
+  border: 1px solid rgba(78, 222, 163, 0.35);
+  box-shadow: 0 0 12px rgba(78, 222, 163, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-wa:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(78, 222, 163, 0.08);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn-wa:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn-wa:hover {
+  color: #051424;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(78, 222, 163, 0.3);
+}
+
+.btn-wa:hover:before {
+  top: -35%;
+  background-color: var(--color-primary);
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn-wa:hover:after {
+  top: -45%;
+  background-color: var(--color-primary);
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn-wa:active {
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .glass-card {
@@ -245,3 +531,326 @@
   -webkit-text-fill-color:transparent;
   animation:shimmer 4s linear infinite;
 }
+
+/* ── Magic Star Button Effect ── */
+.magic-star-btn {
+  position: relative;
+  overflow: visible;
+}
+
+.magic-star-btn .star-1,
+.magic-star-btn .star-2,
+.magic-star-btn .star-3,
+.magic-star-btn .star-4,
+.magic-star-btn .star-5,
+.magic-star-btn .star-6 {
+  pointer-events: none;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  opacity: 0;
+}
+
+.magic-star-btn .star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+
+.magic-star-btn .star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.magic-star-btn .star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.magic-star-btn .star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.magic-star-btn .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.magic-star-btn .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  transition: all 0.8s ease;
+}
+
+.magic-star-btn:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+  opacity: 1;
+}
+
+.magic-star-btn .fil0 {
+  fill: #fffdef;
+}
+
+/* ── Rain Animated Background ── */
+.rain-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(1em) brightness(6);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    transparent 0,
+    transparent 2px,
+    var(--color-surface) 2px
+  );
+  background-size: 8px 8px;
+}
+
+.rain-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  --c: var(--color-primary);
+  background-color: var(--color-surface);
+  background-image: radial-gradient(4px 100px at 0px 235px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 235px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 117.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 252px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 252px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 126px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 150px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 150px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 75px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 253px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 253px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 126.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 204px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 204px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 102px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 134px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 134px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 67px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 179px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 179px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 89.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 299px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 299px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 149.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 215px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 215px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 107.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 281px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 281px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 140.5px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 158px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 158px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 79px, var(--c) 100%, transparent 150%),
+    radial-gradient(4px 100px at 0px 210px, var(--c), transparent),
+    radial-gradient(4px 100px at 300px 210px, var(--c), transparent),
+    radial-gradient(1.5px 1.5px at 150px 105px, var(--c) 100%, transparent 150%);
+  background-size:
+    300px 235px,
+    300px 235px,
+    300px 235px,
+    300px 252px,
+    300px 252px,
+    300px 252px,
+    300px 150px,
+    300px 150px,
+    300px 150px,
+    300px 253px,
+    300px 253px,
+    300px 253px,
+    300px 204px,
+    300px 204px,
+    300px 204px,
+    300px 134px,
+    300px 134px,
+    300px 134px,
+    300px 179px,
+    300px 179px,
+    300px 179px,
+    300px 299px,
+    300px 299px,
+    300px 299px,
+    300px 215px,
+    300px 215px,
+    300px 215px,
+    300px 281px,
+    300px 281px,
+    300px 281px,
+    300px 158px,
+    300px 158px,
+    300px 158px,
+    300px 210px,
+    300px 210px,
+    300px 210px;
+  animation: rain-anim 150s linear infinite;
+  opacity: 0.15; /* Optional: Tone it down so it's a subtle background */
+}
+
+@keyframes rain-anim {
+  0% {
+    background-position:
+      0px 220px,
+      3px 220px,
+      151.5px 337.5px,
+      25px 24px,
+      28px 24px,
+      176.5px 150px,
+      50px 16px,
+      53px 16px,
+      201.5px 91px,
+      75px 224px,
+      78px 224px,
+      226.5px 350.5px,
+      100px 19px,
+      103px 19px,
+      251.5px 121px,
+      125px 120px,
+      128px 120px,
+      276.5px 187px,
+      150px 31px,
+      153px 31px,
+      301.5px 120.5px,
+      175px 235px,
+      178px 235px,
+      326.5px 384.5px,
+      200px 121px,
+      203px 121px,
+      351.5px 228.5px,
+      225px 224px,
+      228px 224px,
+      376.5px 364.5px,
+      250px 26px,
+      253px 26px,
+      401.5px 105px,
+      275px 75px,
+      278px 75px,
+      426.5px 180px;
+  }
+  to {
+    background-position:
+      0px 6800px,
+      3px 6800px,
+      151.5px 6917.5px,
+      25px 13632px,
+      28px 13632px,
+      176.5px 13758px,
+      50px 5416px,
+      53px 5416px,
+      201.5px 5491px,
+      75px 17175px,
+      78px 17175px,
+      226.5px 17301.5px,
+      100px 5119px,
+      103px 5119px,
+      251.5px 5221px,
+      125px 8428px,
+      128px 8428px,
+      276.5px 8495px,
+      150px 9876px,
+      153px 9876px,
+      301.5px 9965.5px,
+      175px 13391px,
+      178px 13391px,
+      326.5px 13540.5px,
+      200px 14741px,
+      203px 14741px,
+      351.5px 14848.5px,
+      225px 18770px,
+      228px 18770px,
+      376.5px 18910.5px,
+      250px 5082px,
+      253px 5082px,
+      401.5px 5161px,
+      275px 6375px,
+      278px 6375px,
+      426.5px 6480px;
+  }
+}
+

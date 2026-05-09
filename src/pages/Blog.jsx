@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal';
 
+import SearchBox from '../components/SearchBox';
+
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
@@ -95,6 +97,7 @@ export default function Blog() {
           {/* Featured Article */}
           {featuredArticle && (
             <ScrollReveal direction="up" delay={0}>
+              <Link to={`/blog/${featuredArticle.id}`} state={{ title: featuredArticle.title }} className="block">
               <article className="glass-panel rounded-xl overflow-hidden glass-panel-interactive relative group cursor-pointer">
               <div className="h-64 md:h-80 w-full relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-surface-variant to-surface-dim opacity-80 z-0" />
@@ -132,6 +135,7 @@ export default function Blog() {
                 </div>
               </div>
               </article>
+              </Link>
             </ScrollReveal>
           )}
 
@@ -148,6 +152,7 @@ export default function Blog() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
               {gridArticles.map((article, i) => (
                 <ScrollReveal key={article.id} delay={i * 100} direction="up">
+                  <Link to={`/blog/${article.id}`} state={{ title: article.title }} className="block h-full">
                   <article className="glass-panel rounded-xl flex flex-col h-full glass-panel-interactive group cursor-pointer">
                   <div className="h-48 w-full relative overflow-hidden rounded-t-xl">
                     <div className="absolute inset-0 bg-surface-container-highest opacity-50 z-0" />
@@ -184,6 +189,7 @@ export default function Blog() {
                     </div>
                   </div>
                   </article>
+                  </Link>
                 </ScrollReveal>
               ))}
             </div>
@@ -226,24 +232,11 @@ export default function Blog() {
           {/* Search */}
           <div className="glass-panel p-6 rounded-xl">
             <h4 className="font-headline-md text-lg text-on-surface mb-4">Cari Artikel</h4>
-            <div className="relative">
-              <input
-                className="w-full bg-surface-container-low border border-outline-variant rounded-lg py-3 pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none"
-                placeholder="Ketik kata kunci..."
-                type="text"
-                value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-              />
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
-                >
-                  <span className="material-symbols-outlined text-sm">close</span>
-                </button>
-              )}
-            </div>
+            <SearchBox 
+              value={searchQuery} 
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }} 
+              placeholder="Ketik kata kunci..." 
+            />
           </div>
 
           {/* Categories */}
@@ -299,7 +292,7 @@ export default function Blog() {
                   />
                   <button
                     type="submit"
-                    className="w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg shadow-[0_0_15px_rgba(78,222,163,0.2)] hover:brightness-110 hover:shadow-[0_0_20px_rgba(78,222,163,0.4)] transition-all"
+                    className="magic-star-btn w-full bg-primary text-on-primary font-label-sm text-label-sm py-3 rounded-lg shadow-[0_0_15px_rgba(78,222,163,0.2)] hover:brightness-110 hover:shadow-[0_0_20px_rgba(78,222,163,0.4)] transition-all"
                   >
                     Berlangganan Gratis
                   </button>

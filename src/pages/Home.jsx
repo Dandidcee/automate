@@ -21,7 +21,7 @@ export default function Home() {
     <main className="pt-24 md:pt-32">
 
       {/* Hero */}
-      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative">
+      <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
         {/* Left */}
@@ -45,10 +45,10 @@ export default function Home() {
           </ScrollReveal>
           <ScrollReveal delay={300}>
             <div className="flex flex-wrap gap-4 mt-4">
-              <button className="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-8 py-4 rounded-full glow-emerald hover:brightness-110 transition-all font-semibold">
+              <button className="btn-fill">
                 Konsultasi Gratis
               </button>
-              <Link to="/solutions" className="bg-transparent border border-secondary text-secondary font-label-sm text-label-sm px-8 py-4 rounded-full hover:bg-secondary/10 transition-all font-semibold">
+              <Link to="/solutions" className="btn-fill-secondary">
                 Lihat Solusi
               </Link>
             </div>
@@ -59,15 +59,42 @@ export default function Home() {
         <ScrollReveal delay={200} direction="right">
           <div className="z-10 relative">
             <div
-              className="rounded-xl p-4 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_24px_60px_rgba(76,215,246,0.2),0_0_40px_rgba(78,222,163,0.1)] cursor-pointer"
-              style={{ background: '#051424', border: '1px solid rgba(78,222,163,0.15)', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+              className="rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_24px_60px_rgba(76,215,246,0.2),0_0_40px_rgba(78,222,163,0.1)] cursor-pointer bg-surface/40 backdrop-blur-xl"
+              style={{ border: '1px solid rgba(78,222,163,0.15)', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
             >
-              <div className="flex items-center gap-2 mb-3 border-b border-white/5 pb-3">
-                <div className="w-3 h-3 rounded-full bg-error" />
-                <div className="w-3 h-3 rounded-full bg-tertiary-container" />
-                <div className="w-3 h-3 rounded-full bg-primary" />
+              {/* Browser Header */}
+              <div className="flex items-center h-[34px] border-b border-white/10 w-full">
+                {/* Traffic Lights */}
+                <div className="flex items-center gap-2 px-3 w-1/4 h-full border-r border-white/5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-error shadow-[inset_2px_2px_5px_rgba(255,255,255,0.15)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#cca704] shadow-[inset_2px_2px_5px_rgba(255,255,255,0.15)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-[inset_2px_2px_5px_rgba(255,255,255,0.15)]" />
+                </div>
+                
+                {/* Browser Controls & URL */}
+                <div className="flex items-center gap-2.5 px-3 w-3/4 h-full">
+                  <div className="flex text-on-surface-variant">
+                    <svg viewBox="0 0 20 20" height="14" width="14" xmlns="http://www.w3.org/2000/svg" className="fill-current">
+                      <path transform="translate(6.25 3.75)" d="M0,6.25,6.25,0l.875.875L1.75,6.25l5.375,5.375L6.25,12.5Z" />
+                    </svg>
+                    <svg viewBox="0 0 20 20" height="14" width="14" xmlns="http://www.w3.org/2000/svg" className="fill-current">
+                      <path transform="translate(6.625 3.75)" d="M7.125,6.25.875,12.5,0,11.625,5.375,6.25,0,.875.875,0Z" />
+                    </svg>
+                  </div>
+                  
+                  <div className="relative flex items-center justify-center w-full h-[22px] border border-white/20 rounded-[5px] shadow-[inset_2px_2px_2px_rgba(255,255,255,0.05)] text-[10px] text-on-surface-variant tracking-wider font-mono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 16.89 16.887" className="absolute left-2.5 fill-current">
+                      <path d="M16.006,16.887h0l-4.743-4.718a6.875,6.875,0,1,1,.906-.906l4.719,4.744-.88.88ZM6.887,1.262a5.625,5.625,0,1,0,5.625,5.625A5.631,5.631,0,0,0,6.887,1.262Z" transform="translate(0.003 0)" />
+                    </svg>
+                    otomateid.net
+                  </div>
+                </div>
               </div>
-              <AnimatedWorkflow />
+              
+              {/* Content */}
+              <div className="p-4">
+                <AnimatedWorkflow />
+              </div>
             </div>
           </div>
         </ScrollReveal>
@@ -100,10 +127,21 @@ export default function Home() {
             Integrasi tanpa batas antara komunikasi pelanggan dan sistem operasional internal.
           </p>
         </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {SERVICES.map(({ icon, color, hoverBg, title, desc }, i) => (
             <ScrollReveal key={title} delay={i * 120} direction="up">
-              <div className="glass-panel p-8 rounded-xl hover:glow-cyan transition-all duration-300 group cursor-pointer card-hover">
+              <div 
+                className="card-rot-bg spotlight-card p-8 rounded-xl hover:glow-cyan transition-all duration-300 group cursor-pointer card-hover"
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                  e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.setProperty('--mouse-x', `-1000px`);
+                  e.currentTarget.style.setProperty('--mouse-y', `-1000px`);
+                }}
+              >
                 <div className={`w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center mb-6 ${hoverBg} transition-colors`}>
                   <span className={`material-symbols-outlined ${color} text-3xl`}>{icon}</span>
                 </div>

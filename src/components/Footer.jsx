@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
@@ -13,15 +14,15 @@ export default function Footer() {
   return (
     <footer className="bg-surface-container-lowest w-full border-t border-outline-variant/30">
       {/* Main footer grid */}
-      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 pb-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Brand */}
         <div className="flex flex-col gap-3">
-          <Link to="/" className="font-display-xl-mobile text-headline-lg-mobile font-bold text-primary w-fit tracking-tighter">
-            OtomateID
+          <Link to="/" className="font-display-xl text-2xl font-bold text-primary w-fit tracking-tighter">
+            OtomaID
           </Link>
           <p className="text-on-surface-variant text-sm leading-relaxed max-w-[200px]">
-            Solusi Automasi AI Terpercaya di Indonesia. Tingkatkan efisiensi bisnis Anda dengan teknologi cerdas yang dirancang untuk skala enterprise.
+            Solusi Automasi AI Terpercaya di Indonesia.
           </p>
         </div>
 
@@ -37,8 +38,6 @@ export default function Footer() {
         <div className="flex flex-col gap-4">
           <span className="text-on-surface font-semibold text-sm">Sumber Daya</span>
           <Link to="/blog" className="text-on-surface-variant hover:text-primary transition-colors text-sm">Blog</Link>
-          <Link to="/solutions" className="text-on-surface-variant hover:text-primary transition-colors text-sm">Case Studies</Link>
-          <a href="#" className="text-on-surface-variant hover:text-primary transition-colors text-sm">Dokumentasi API</a>
         </div>
 
         {/* Insight Mingguan */}
@@ -71,7 +70,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5 border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-on-surface-variant text-xs">
-          © 2026 OtomateID. Solusi Otomasi AI Terpercaya di Indonesia.
+          © 2026 OtomaID. Solusi Otomasi AI Terpercaya di Indonesia.
         </p>
         <div className="flex items-center gap-6">
           <a href="#" className="text-on-surface-variant hover:text-primary transition-colors text-xs">Kebijakan Privasi</a>
